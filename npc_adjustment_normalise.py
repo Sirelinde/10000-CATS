@@ -1,6 +1,7 @@
 import csv
 
-# Baseline probabilities for exposure to each place
+# Define all baseline probabilities for reference
+# Baseline probabilities for visiting (exposure)
 baseline_probabilities_visit = {
     "Pet shop": 0.75,
     "SPCA": 0.04,
@@ -11,26 +12,25 @@ baseline_probabilities_visit = {
 
 # Baseline probabilities for engaging after exposure
 baseline_probabilities_enter = {
-    "Pet shop": 0.50,
+    "Pet shop": 0.60,
     "SPCA": 0.10,
     "LAP": 0.10,
-    "Ethical breeder": 0.10,
-    "Unethical breeder": 0.10
+    "Ethical breeder": 0.15,
+    "Unethical breeder": 0.15
 }
 
 # Baseline probabilities for actions after deciding to engage
 baseline_probabilities_actions = {
     "Abandon cat": 0.00,
-    "Adopt cat": 0.10,
+    "Adopt cat": 0.06,
     "Adoption approval": 0.50,
-    "Buy cat": 0.10,
-    "Buy stuff": 0.50,
-    "Donate": 0.50
+    "Buy cat": 0.13,
+    "Buy stuff": 0.30,
+    "Donate": 0.20
 }
 
-# NORMALISE AND ADJUST VISITING PROBABILITIES
 def normalise_and_adjust_probabilities(visit_probs):
-    # Normalise the probabilities to sum to 1. This is done because I assume the 8000 people represent those who WILL participate in this system each day.
+    # Normalise the probabilities to sum to 1
     total_prob = sum(visit_probs.values())
     if total_prob > 0:
         visit_probs = {k: v / total_prob for k, v in visit_probs.items()}
@@ -38,13 +38,13 @@ def normalise_and_adjust_probabilities(visit_probs):
     # Sort the probabilities by value (ascending order)
     sorted_probs = sorted(visit_probs.items(), key=lambda item: item[1])
 
-    # Adjust any probabilities that are 0 or negative. Make it at least 1%.
+    # Adjust any probabilities that are 0 or negative
     for i, (key, value) in enumerate(sorted_probs):
         if value <= 0:
             deficit = 0.01 - value
             sorted_probs[i] = (key, 0.01)
 
-            # Redistribute the deficit by taking from the second lowest ranked item. Rationale is to accentuate differences in behaviour (I do realise this may be a problematic decision to model like this).
+            # Redistribute the deficit
             for j in range(i+1, len(sorted_probs)):
                 donor_key, donor_value = sorted_probs[j]
                 if donor_value > 0.01:
@@ -61,16 +61,27 @@ def normalise_and_adjust_probabilities(visit_probs):
 
     return dict(sorted_probs)
 
-# ADJUST BUT NOT NORMALISE ENTERING AND ACTION PROBABILITIES
-def adjust_probabilities_without_normalisation(probabilities):
-    # Adjust probabilities by setting any negative or zero values to 0.01 without normalisation.
-    adjusted_probs = {}
-    for key, value in probabilities.items():
+def adjust_and_redistribute_probabilities(probabilities):
+    # Adjust any probabilities that are 0 or negative, but do not normalise.
+    sorted_probs = sorted(probabilities.items(), key=lambda item: item[1])
+
+    # Adjust any probabilities that are 0 or negative
+    for i, (key, value) in enumerate(sorted_probs):
         if value <= 0:
-            adjusted_probs[key] = 0.01
-        else:
-            adjusted_probs[key] = value
-    return adjusted_probs
+            deficit = 0.01 - value
+            sorted_probs[i] = (key, 0.01)
+
+            # Redistribute the deficit
+            for j in range(i+1, len(sorted_probs)):
+                donor_key, donor_value = sorted_probs[j]
+                if donor_value > 0.01:
+                    transfer_amount = min(deficit, donor_value - 0.01)
+                    sorted_probs[j] = (donor_key, donor_value - transfer_amount)
+                    deficit -= transfer_amount
+                if deficit <= 0:
+                    break
+
+    return dict(sorted_probs)
 
 def correct_small_values(probabilities):
     # Correct small floating-point values close to zero.
@@ -103,8 +114,8 @@ def process_csv(input_filename="adjusted_npc_probabilities.csv", output_filename
             enter_probs = {key: float(value) for key, value in row.items() if key.startswith("Enter ")}
             action_probs = {key: float(value) for key, value in row.items() if key in baseline_probabilities_actions.keys()}
             
-            enter_probs_corrected = adjust_probabilities_without_normalisation(enter_probs)
-            action_probs_corrected = adjust_probabilities_without_normalisation(action_probs)
+            enter_probs_corrected = correct_small_values(adjust_and_redistribute_probabilities(enter_probs))
+            action_probs_corrected = correct_small_values(adjust_and_redistribute_probabilities(action_probs))
             
             # Update the row with adjusted probabilities
             for key in visit_probs_corrected.keys():
