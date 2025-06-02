@@ -1,4 +1,4 @@
-The original parameters in the Python codes seem to give rise to values similar to those described within the Case Study.
+The original parameters in the Python codes seem to give rise to values similar to those described in the Case Study.
 
 MAIN OBSERVATIONS:
 
