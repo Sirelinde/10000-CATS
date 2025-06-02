@@ -62,7 +62,7 @@ def analyze_npc_actions(filename="npc_actions.csv"):
         "Unethical breeder": 20000
     }
     adoption_fee = { # Adoption fees at shelters
-        "SPCA": 1500,
+        "SPCA": int(random.random() * (300) + 700), #range between 700 to 1000 to adopt
         "LAP": 1500
     }
     restocking_cost_per_cat = 8000 # Restocking cost for pet shops (pet shop buying from unethical breeders)
@@ -117,7 +117,7 @@ def analyze_npc_actions(filename="npc_actions.csv"):
                 # AFCD kills 48% cats received, means at least 20000 cats are abandoned per year.
                 cats_spawned_to_abandon = {
                     "Ethical breeder": 0, # They don't abandon cats
-                    "Unethical breeder": ((establishments["Unethical breeder"]["Bought Cat"] + establishments["Pet shop"]["Bought Cat"]) * int(random.random() * (0.5) + 1.5) * days_run) - establishments["Pet shop"]["Bought Cat"] - establishments["Unethical breeder"]["Bought Cat"], # Spawns between 1.5 to 2 times cats sold to citizens and supplied to pet shop (abandond cats that don't live up to breed standards) (flexible spawning to adjust to market demand)
+                    "Unethical breeder": ((establishments["Unethical breeder"]["Bought Cat"] + establishments["Pet shop"]["Bought Cat"]) * int(random.random() * (0.5) + 1.5) * days_run) - establishments["Pet shop"]["Bought Cat"] - establishments["Unethical breeder"]["Bought Cat"], # Spawns between 1.5 to 2 times cats sold to citizens and supplied to pet shop (abandons cats that don't live up to breed standards) (flexible spawning to adjust to market demand)
                     "Pet shop": 0, # They don't abandon cats
                     # Adjust the total number needed to match the data, to relative organisation size
                     "SPCA": int(random.random() * (10) + 10) * days_run, # Spawns between 10 to 20 cats
@@ -285,12 +285,12 @@ def analyze_npc_actions(filename="npc_actions.csv"):
 
                 # Handle SPCA and LAP buying stuff and donations                    
                 if row["Buy stuff"] == "Yes":
-                    amount_spent = int(row["Amount spent on stuff"])
+                    amount_spent = int(random.random() * (80) + 20)
                     establishments[place]["Bought Stuff"] += 1
                     establishments[place]["Profit from Stuff"] += amount_spent
 
                 if row["Donate"] == "Yes":
-                    donation_amount = int(row["Donation amount"])
+                    donation_amount = int(random.random() * (999) + 1)
                     establishments[place]["Donated"] += 1
                     establishments[place]["Profit from Donations"] += donation_amount
 
