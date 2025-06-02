@@ -28,15 +28,15 @@ def generate_profile_sentence(row):
     else:
         sentence_parts.append("is not well-informed on animal welfare")
     
-    if row["Monthly income above 30,000 HKD"] == "Above":
-        sentence_parts.append("has a monthly income above 30,000 HKD")
+    if row["Monthly income above 20,000 HKD"] == "Above":
+        sentence_parts.append("has a monthly income above 20,000 HKD")
     else:
-        sentence_parts.append("has a monthly income below 30,000 HKD")
+        sentence_parts.append("has a monthly income below 20,000 HKD")
     
     return ", ".join(sentence_parts)
 
 def count_npc_types(filename="npc_profiles.csv", output_filename="npc_type_counts.csv"):
-    # Initialize a dictionary to hold the counts of each type of NPC
+    # Initialise a dictionary to hold the counts of each type of NPC
     type_counts = defaultdict(int)
 
     with open(filename, newline='') as csvfile:
