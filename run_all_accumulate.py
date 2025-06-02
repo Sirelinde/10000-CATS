@@ -13,8 +13,6 @@ scripts = [
     "npc_probability_99.py",
     "npc_final_behaviour.py",
     "shop_tally_flex_spawn.py",
-    #"AFCD 4 day death counter conveyer belt code"
-    #"Append everything into the master csv that represents 1 day"
     "npc_type_counter.py"
 ]
 
