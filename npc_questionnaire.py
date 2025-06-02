@@ -8,7 +8,7 @@ def generate_npc():
         "Plans to get a new cat": "No",
         "Cat breed is important": "N/A",
         "Well-informed on animal welfare": "N/A",
-        "Monthly income above 30,000 HKD": "Below"
+        "Monthly income above 20,000 HKD": "Below"
     }
 
     # Question 1 (Do you own a cat?)
@@ -22,13 +22,13 @@ def generate_npc():
     npc_profile["Cat breed is important"] = "Yes" if random.random() < 0.75 else "No"
 
     # Question 3 (Are you well-informed on animal welfare and the pet abandonment situation in HK?)
-    npc_profile["Well-informed on animal welfare"] = "Yes" if random.random() < 0.65 else "No"
+    npc_profile["Well-informed on animal welfare"] = "Yes" if random.random() < 0.30 else "No"
 
-    # Question 4 (Do you want to get a new cat?)
+    # Question 4 (Do you want/plan to get a new cat?)
     npc_profile["Plans to get a new cat"] = "Yes" if random.random() < 0.25 else "No"
     
-    # Question 5 (Is your monthly income above or below 30,000 HKD?)
-    npc_profile["Monthly income above 30,000 HKD"] = "Above" if random.random() < 0.50 else "Below"
+    # Question 5 (Is your monthly income above or below 20,000 HKD?)
+    npc_profile["Monthly income above 20,000 HKD"] = "Above" if random.random() < 0.50 else "Below"
 
     return npc_profile
 
@@ -46,7 +46,7 @@ def save_to_csv(npc_list, filename="npc_profiles.csv"):
         dict_writer.writerows(npc_list)
 
 # Number of NPCs to generate
-days_run = 1 # Should run this code for 1 day but loop it 365 times in the run all accumulate script, then add the data in a cumulative csv. It will become more stable.
-num_npcs_per_day = 8000 * days_run
+days_run = 1 # Should run this code for 1 day but loop it 365 times in the run_all_accumulate script, then add the data in a cumulative csv. It will become more stable.
+num_npcs_per_day = 8000 * days_run # Number based on minimum foot traffic to keep pet shops alive, multiply by 2. Estimate of total people who participate in this system per day.
 npcs = generate_npcs(num_npcs_per_day)
 save_to_csv(npcs)
