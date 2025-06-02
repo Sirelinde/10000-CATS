@@ -2,9 +2,9 @@ import csv
 
 # Baseline probabilities for exposure to each place
 baseline_probabilities_visit = {
-    "Pet shop": 0.75,
-    "SPCA": 0.04,
-    "LAP": 0.01,
+    "Pet shop": 0.70,
+    "SPCA": 0.08,
+    "LAP": 0.02,
     "Ethical breeder": 0.10,
     "Unethical breeder": 0.10
 }
