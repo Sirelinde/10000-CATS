@@ -6,4 +6,4 @@ Notes:
 Ensure all files are in the same directory.
 Change days_run in run_all_accumulate.py to set the duration of the simulation.
 The script gives cumulative data over the set days in npc_analysis_accumulated.csv and npc_type_counts_accumulated.csv
-(Two example CSV files for 30 days and 365 days are included).
+(example CSV files for 30 days and 365 days are included).
