@@ -7,4 +7,5 @@ This observation aligns well with the reports given about the struggles of LAP (
 All three stakeholders run massive losses.
 
 People who buy cats vastly outnumber those who adopt, and most cats are bought from pet shops, with unethical breeders gaining huge profits from supplying these shops.
-Approximately 7000 cats would be killed each year.
+
+Approximately 7000 cats would be killed each year, mostly by the AFCD (as reflected in their euthanasia costs).
