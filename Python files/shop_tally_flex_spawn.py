@@ -122,7 +122,7 @@ def analyze_npc_actions(filename="npc_actions.csv"):
                     # Adjust the total number needed to match the data, to relative organisation size
                     "SPCA": int(random.random() * (10) + 10) * days_run, # Spawns between 10 to 20 cats
                     "LAP": int(random.random() * (10) + 5) * days_run, # Spawns between 5 to 15 cats
-                    "AFCD": int(random.random() * (10) + 10) * days_run, # Spawns between 20 to 40 cats
+                    "AFCD": int(random.random() * (10) + 10) * days_run, # Spawns between 10 to 20 cats
                     "Other charities": 0 # They're not the focus of this simulation
                 }
 
