@@ -22,7 +22,7 @@ def generate_npc():
     npc_profile["Cat breed is important"] = "Yes" if random.random() < 0.75 else "No"
 
     # Question 3 (Are you well-informed on animal welfare and the pet abandonment situation in HK?)
-    npc_profile["Well-informed on animal welfare"] = "Yes" if random.random() < 0.30 else "No"
+    npc_profile["Well-informed on animal welfare"] = "Yes" if random.random() < 0.30 else "No" # This is the parameter to be changed in the simulation (from 30% to 40%)
 
     # Question 4 (Do you want/plan to get a new cat?)
     npc_profile["Plans to get a new cat"] = "Yes" if random.random() < 0.25 else "No"
