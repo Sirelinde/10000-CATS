@@ -117,12 +117,12 @@ def analyze_npc_actions(filename="npc_actions.csv"):
                 # AFCD kills 48% cats received, means at least 20000 cats are abandoned per year.
                 cats_spawned_to_abandon = {
                     "Ethical breeder": 0, # They don't abandon cats
-                    "Unethical breeder": ((establishments["Unethical breeder"]["Bought Cat"] + establishments["Pet shop"]["Bought Cat"]) * int(random.random() * (0.5) + 1.5) * days_run) - establishments["Pet shop"]["Bought Cat"] - establishments["Unethical breeder"]["Bought Cat"], # Spawns between 1.5 to 2 times cats sold to citizens and supplied to pet shop (abandons cats that don't live up to breed standards) (flexible spawning to adjust to market demand)
+                    "Unethical breeder": ((establishments["Unethical breeder"]["Bought Cat"] + establishments["Pet shop"]["Bought Cat"]) * int(random.random() * (1) + 1.5) * days_run) - establishments["Pet shop"]["Bought Cat"] - establishments["Unethical breeder"]["Bought Cat"], # Spawns between 1.5 to 2.5 times cats sold to citizens and supplied to pet shop (abandons cats that don't live up to breed standards) (flexible spawning to adjust to market demand)
                     "Pet shop": 0, # They don't abandon cats
                     # Adjust the total number needed to match the data, to relative organisation size
                     "SPCA": int(random.random() * (10) + 10) * days_run, # Spawns between 10 to 20 cats
                     "LAP": int(random.random() * (10) + 5) * days_run, # Spawns between 5 to 15 cats
-                    "AFCD": int(random.random() * (20) + 20) * days_run, # Spawns between 20 to 40 cats
+                    "AFCD": int(random.random() * (10) + 10) * days_run, # Spawns between 20 to 40 cats
                     "Other charities": 0 # They're not the focus of this simulation
                 }
 
