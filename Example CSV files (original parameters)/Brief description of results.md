@@ -8,6 +8,6 @@ All three stakeholders run massive losses and would struggle to survive.
 
 2) People who buy cats vastly outnumber those who adopt, and most cats are bought from pet shops, with unethical breeders gaining huge profits from supplying these shops.
 
-3) Approximately 1000 cats are surrendered by owners each year, with more than 10,000 additional cats abandoned elsewhere in the system.
+3) Approximately 1000 cats are surrendered by owners each year, with 20,000 additional cats abandoned elsewhere in the system.
 
 4) Approximately 7000 cats are killed each year, mostly by the AFCD (as reflected in their euthanasia costs).
