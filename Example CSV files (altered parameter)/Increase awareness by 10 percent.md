@@ -3,4 +3,7 @@ This change may have resulted from educational efforts from schools, charities, 
 A 10% decrease is ambitious, but perhaps possible with many years of educational campaigns.
 
 RESULTS:
-1) I noticed that changing this parameter resulted in MORE cats being surrendered by owners to the animal shelters. This was unexpected because I thought the opposite would happen. Either this was a fluke in the code, or it may reflect a real phenomenon where, instead of simply abandoning the cats, the owners bring them to the shelters. It is an interesting observation.
+1) There is a noticeable decrease in the number of cats killed. The number of abandoned cats also decreased, suggesting this may be the reason for the lowered number of killed cats.
+2) LAP and SPCA are still running losses but it is less severe than originally. The greatest contributor to this change is increased donations and decreased number of cats in the shelters (requires money to take care of).
+3) More cats are getting adopted and less are bought. As a result, pet shops and breeders are earning less than originally.
+4) MORE cats were surrendered by owners to the animal shelters. This was unexpected because I thought the opposite would happen. Either this was a fluke in the code, or it may reflect a real phenomenon where, instead of simply abandoning the cats, the owners bring them to the shelters. It is an interesting observation.
